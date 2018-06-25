@@ -5,7 +5,7 @@ import android.os.Bundle;
 import android.util.Log;
 
 
-import java.util.concurrent.TimeUnit;
+import java.util.Arrays;
 
 import rx.Observable;
 
@@ -20,34 +20,52 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        Action1 onNextAction=new Action1() {
-            @Override
-            public void call(Object o) {
-                Log.e(TAG, "onNext"+o.toString() );
-            }
-        };
+//        Action1 onNextAction=new Action1() {
+//            @Override
+//            public void call(Object o) {
+//                Log.e(TAG, "onNext"+o.toString() );
+//            }
+//        };
+//
+//        Action1 onError=new Action1() {
+//            @Override
+//            public void call(Object o) {
+//                Log.e(TAG, "call: onError" );
+//            }
+//        };
+//
+//        Action0 onCompled=new Action0() {
+//            @Override
+//            public void call() {
+//                Log.e(TAG, "call: onCompled" );
+//            }
+//        };
+//        final String test="litao";
+//        Observable observable =Observable.just("我就1","我就2").repeat(2).map(new Func1<String,String>() {
+//            @Override
+//            public String call(String o) {
+//                return test+o;
+//            }
+//        });
+//        observable.subscribe(onNextAction,onError);
 
-        Action1 onError=new Action1() {
-            @Override
-            public void call(Object o) {
-                Log.e(TAG, "call: onError" );
-            }
-        };
+        int[]abc={1,15,2,10,45,3,5,58,79,54};
+       bubble(abc);
+        Log.e(TAG, Arrays.toString(abc) );
 
-        Action0 onCompled=new Action0() {
-            @Override
-            public void call() {
-                Log.e(TAG, "call: onCompled" );
-            }
-        };
-        final String test="litao";
-        Observable observable =Observable.just("我就1","我就2").repeat(2).map(new Func1<String,String>() {
-            @Override
-            public String call(String o) {
-                return test+o;
-            }
-        });
-        observable.subscribe(onNextAction,onError);
 
+    }
+
+    private static void bubble(int [] a){
+        int temp;
+        for (int i = 0; i < a.length - 1; i++) {
+            for (int j = a.length - 1; j > i; j--) {
+                if (a[j] < a[j - 1]) {
+                    temp = a[j];
+                    a[j] = a[j - 1];
+                    a[j - 1] = temp;
+                }
+            }
+        }
     }
 }
